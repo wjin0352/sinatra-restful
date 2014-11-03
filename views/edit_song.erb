@@ -1,0 +1,5 @@
+<h2>Edit a song</h2>
+<!-- remember to use embedded ruby tags to reference @song.whatever! not interpolation -->
+<form method="POST" action="/song/<%= @song.id %>" >
+	<input type="hidden" name="_method" value="PUT"/>
+		<%= erb :new_song %>

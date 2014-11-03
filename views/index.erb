@@ -1,0 +1,19 @@
+<h3>Lists all of the Songs in class Song</h3>
+	<nav>
+		<a href="/"> Home</a>
+		<a href="/song/new">create new</a>
+	</nav>
+
+<% @songs.each do |item| %>
+	<ul>
+		<li><a href="/song/<%=item.id%>">Song title: <%= item.title %></a></li>
+		<li>Song id: <%= item.id %></li>
+		<li><%= item.released_on %></li>
+	</ul>
+<% end %>
+
+
+
+
+
+

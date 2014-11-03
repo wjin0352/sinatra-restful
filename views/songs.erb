@@ -1,0 +1,14 @@
+<div>
+	<p>Title: <%= @song.title %></p>
+	<p>Lyrics: <%= @song.lyrics %></p>
+	<p>ID: <%= @song.id %></p>
+	<p>Length: <%= @song.length %></p>
+	<a href="/song/<%= @song.id %>/edit">EDIT SONG</a>
+	
+	<form action="/song/<%= @song.id %>" method="POST" >
+		<input type="hidden" name="_method" value="DELETE" />
+		<input type="submit" value="delete" />
+	</form>	
+</div><br>
+
+<a href="/songs">Back to songs</a>
