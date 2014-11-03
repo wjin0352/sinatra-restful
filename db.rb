@@ -66,6 +66,7 @@ put '/song/:id' do
 	redirect to("/song/#{song.id}")
 end
 
+# delete made with one route because I used a form to send the post/delete request to here
 delete '/song/:id' do
 	Song.get(params[:id]).destroy
 	redirect to("/songs")
