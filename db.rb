@@ -45,6 +45,17 @@ get '/song/new' do
 	erb :new_song_form
 end
 
+
+# with ajax you can call a route you created which gives the response u want
+# use the id to find description and return it   
+# and then use js to put it in 
+# js will insert that response to...
+get 'song/ajax/:id' do
+	@song = Song.get(params[:id])
+	id = @song.id
+	erb :index
+end
+
 get '/song/:id' do
 	@song = Song.get(params[:id])
 	erb :songs
@@ -71,6 +82,7 @@ delete '/song/:id' do
 	Song.get(params[:id]).destroy
 	redirect to("/songs")
 end
+
 
 
 

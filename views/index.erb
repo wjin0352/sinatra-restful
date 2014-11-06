@@ -9,8 +9,24 @@
 		<li><a href="/song/<%=item.id%>">Song title: <%= item.title %></a></li>
 		<li>Song id: <%= item.id %></li>
 		<li><%= item.released_on %></li>
+		<a href="/song/ajax/<%=item.id%>" id="ajax" onclick="getId(<%= item.id %>);">show lyrics</a>
+		<li id="ajaxdata"></li>
+
 	</ul>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

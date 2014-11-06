@@ -7,8 +7,16 @@
 	
 	<form action="/song/<%= @song.id %>" method="POST" >
 		<input type="hidden" name="_method" value="DELETE" />
-		<input type="submit" value="delete" />
+		<input type="submit" value="delete" id="del" onclick="doit()"/>
 	</form>	
 </div><br>
+
+
+
+<div><p id="title"></p></div>
+<div><p id="id"></p></div>
+<div><p id="lyrics"></p></div>
+<div><p id="length"></p></div>
+<div><p id="val"></p>
 
 <a href="/songs">Back to songs</a>
