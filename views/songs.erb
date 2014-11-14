@@ -4,7 +4,18 @@
 	<p>ID: <%= @song.id %></p>
 	<p>Length: <%= @song.length %></p>
 	<a href="/song/<%= @song.id %>/edit">EDIT SONG</a>
+</div>
 	
+	<div id="like">
+      <p></p>
+      <form action="/like/<%=@song.id%>" method="POST">
+			 <input type="submit" value="like"/>
+			<!-- <button id="likebutton" onclick="like()">LIKE</button> -->
+			</form>
+	</div>
+
+
+<div>	
 	<form action="/song/<%= @song.id %>" method="POST" >
 		<input type="hidden" name="_method" value="DELETE" />
 		<input type="submit" value="delete" id="del" onclick="doit()"/>

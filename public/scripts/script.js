@@ -1,64 +1,75 @@
 
-var myurl = 'http://localhost:4567/song/ajax/';
 
-var getId = function(id){
-		alert(id);
-		var myid = id;
+$(document).ready(function() {
+
+    // LIKE BUTTON
+    // Using jquery find something to trigger an event
+        $('#like input').click(event, function () {
+        // prevent default action from that form input btn being clicked and add out own response using ajax
+            event.preventDefault();
+        // Ajax post method
+            $.post(
+                $('#like form').attr('action'),
+                function(data){
+                    alert(data);
+                    $('#like p').html(data);
+                    }
+            );
+        });
+
+    // AJAX SHOW LYRICS
+    // Using jquery find something to trigger an event
+        $('#list').on('click','#input', function(){
+            // run function upon click event to store our html data attribute by
+            // using jquery to grab input button with id of input, then getting its attribute "data-song-id"
+            // save that to an id variable to be used
+            var id = $(this).attr("data-song-id");
+//            alert(id);
+
+            // using jquery find html tag to place our results, same directions as above
+            var targetId = $(this).next().attr("data-target-id");
+//            alert(targetId);
+
+                var results = "";
+
+                $.get("/ajax/"+id).done(function(data){
+                    var parsedData = JSON.parse(data);
+                    results += "<li>"+parsedData.lyrics+"</li>";
+
+//                    alert(id);
+
+                    $('#target'+id).html(results);
+                });
+        });
 
 
-	
-	// var id = $(this).data("id");
-	// $('#ajax').onclick(function(){
-$('#ajax').onreadystatechange(function(){
-		$.ajax({
-			url: myurl + myid.toString(),
-			type: 'GET',
-			success: function(data){
-				// $('#ajaxdata').append('<p>data</p>');
-				console.log('success', data);
-			},
-		// });
-		// error: function(XMLHttpRequest, textStatus, errorThrown){
-		// 	console.log('error', errorThrown);
-		// }
-	});
+
+//				alert("/ajax/"+id);
+//				$.get("/ajax/"+id).done(function(data){
+//
+//					var parsedData = JSON.parse(data);
+//					// alert(data);
+//					// alert(parsedData);
+//					// for (var i=0; i<lyrics.length; i++){
+//						results += "<li>"+parsedData.title+"</li>";
+//						alert(results);
+//						$(targetId).replaceWith(results);
+//
+//					// }
+//				});
+//			}
+//	});
+
+
 
 });
 
 
-}
 
 
 
 
-var myurl = 'http://localhost:4567/song/ajax/';
 
-var getId = function(id){
-		alert(id);
-		var myid = id;
-
-
-	
-	// var id = $(this).data("id");
-	// $('#ajax').onclick(function(){
-$('#ajax').onreadystatechange(function(){
-		$.ajax({
-			url: myurl + myid.toString(),
-			type: 'GET',
-			success: function(data){
-				// $('#ajaxdata').append('<p>data</p>');
-				console.log('success', data);
-			},
-		// });
-		// error: function(XMLHttpRequest, textStatus, errorThrown){
-		// 	console.log('error', errorThrown);
-		// }
-	});
-
-});
-
-
-}
 
 
 

@@ -1,0 +1,9 @@
+<% if @song.likes == 0 %>
+    <p>Nobody likes this song</p>
+<% end %>
+<% if @song.likes == 1 %>
+    <p>This has been liked once</p>
+<% end %>
+<% if @song.likes > 1 %>
+    <p>This has been liked <%= @song.likes %> times</p>
+<% end %>

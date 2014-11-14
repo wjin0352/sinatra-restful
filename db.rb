@@ -10,6 +10,7 @@ class Song
 	property :lyrics, Text
 	property :length, Integer
 	property :released_on, Date
+	property :likes, Integer, :default => 0
 
 	def released_on=date
 		super Date.strptime(date, '%m/%d/%Y')
@@ -45,16 +46,45 @@ get '/song/new' do
 	erb :new_song_form
 end
 
+# like button route
+post '/like/:id' do
+	@song = Song.get(params[:id])
+	@song.likes = @song.likes.next
+	@song.save # saves and updates page upon a redirect or render
+
+  redirect to"/song/#{@song.id}" unless request.xhr? # unless runs on false condition, if true the else is run...
+    erb :like, :layout => false  # renders like, which is just the like portion, and doesnt show layout
+end
+
 
 # with ajax you can call a route you created which gives the response u want
 # use the id to find description and return it   
 # and then use js to put it in 
 # js will insert that response to...
-get 'song/ajax/:id' do
+# get '/ajax/all' do
+# 	@songs = Song.all
+# 	@songs.to_json
+	## since we are doing ajax request we dont need a view
+  ## just return as json and will handle the data via jquery
+  ## donot forget to add jquery in your layout.erb file
+
+get '/ajax/:id' do
 	@song = Song.get(params[:id])
-	id = @song.id
-	erb :index
+	@song.to_json
+
 end
+
+
+# post '/song/ajax/:id' do
+# 	@song = Song.get(params[:id])
+# 	@song.likes = @song.likes.next
+# 	@song.save
+#   # erb :like, :layout => false
+#   # redirect to"/song/ajax/#{@song.id}" unless request.xhr?
+# 	#
+# 	redirect back
+# end
+
 
 get '/song/:id' do
 	@song = Song.get(params[:id])
