@@ -13,16 +13,15 @@
     <br>
 
           <!-- must give the <div> its own id and save it to a variable to be used in the javascript -->
-			<!--<input type="submit" id="input" value="show lyrics"/>-->
+		    <!--<input type="submit" id="input" value="show lyrics"/>-->
             <!--use data-* = *  its an html attribute to store data to be used in other languages like javascript-->
 			<!-- had to bring in id to javascript using embedded ruby and saving to data-song-id so the js knows which we are working with -->
-
+            <!--place to put my ajax paragraph-->
           <div id="target<%=item.id%>" data-target-id="<%=item.id%>"></div>
 
-
+          <!--button to start ajax request.-->
           <button id="input" data-song-id="<%= item.id %>" >lyrics</button>
 			<!-- cannot use a form, because your doing ajax request the form will get in the way unless you stop the forms default action which is an extra step to take! -->
-
 
 <% end %>
 	</ul>
